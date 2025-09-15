@@ -104,86 +104,10 @@
                               <li>
                                  <a href="/destinations">destination</a>
                               </li>
-                              <li class="menu-item-has-children">
-                                 <a href="/">packages</a>
-                                 <ul>
-                                    <li>
-                                       <a href="package.html">Packages</a>
-                                    </li>
-                                    <li>
-                                       <a href="package-offer.html">Package offer</a>
-                                    </li>
-                                    <li>
-                                       <a href="/tour-packages">Package detail</a>
-                                    </li>
-                                    <li>
-                                       <a href="cart.html">Cart page</a>
-                                    </li>
-                                    <li>
-                                       <a href="booking.html">Booking page</a>
-                                    </li>
-                                    <li>
-                                       <a href="confirmation.html">Confirmation</a>
-                                    </li>
-                                 </ul>
+                              <li>
+                                 <a href="/tour-packages">Tours</a>
                               </li>
-                              <li class="menu-item-has-children">
-                                 <a href="/">Pages</a>
-                                 <ul>
-                                    <li>
-                                       <a href="home-banner.html">Home Banner</a>
-                                    </li>
-                                    <li>
-                                       <a href="service.html">Service</a>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                       <a href="#">Career</a>
-                                       <ul>
-                                          <li>
-                                             <a href="career.html">Career</a>
-                                          </li>
-                                          <li>
-                                             <a href="career-detail.html">Career detail</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                    <li>
-                                       <a href="team.html">Tour guide</a>
-                                    </li>
-                                    <li>
-                                       <a href="gallery.html">Gallery page</a>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                       <a href="#">Blog</a>
-                                       <ul>
-                                          <li>
-                                             <a href="blog-archive.html">Blog archive</a>
-                                          </li>
-                                          <li>
-                                             <a href="blog-single.html">blog single</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                    <li>
-                                       <a href="single-page.html">Single Page</a>
-                                    </li>
-                                    <li>
-                                       <a href="testimonial.html">Testimonial</a>
-                                    </li>
-                                    <li>
-                                       <a href="faq.html">Faq Page</a>
-                                    </li>
-                                    <li>
-                                       <a href="search-page.html">Search Page</a>
-                                    </li>
-                                    <li>
-                                       <a href="404.html">404 Page</a>
-                                    </li>
-                                    <li>
-                                       <a href="comming-soon.html">Comming Soon Page</a>
-                                    </li>
-                                 </ul>
-                              </li>
+                        
                               <li>
                                  <a href="/contact">contact us</a>
                               </li>
@@ -202,7 +126,8 @@
          <main id="content" class="site-main">
             <!-- ***home banner html start form here*** -->
             <section class="home-banner-section home-banner-slider">
-               <div class="home-banner d-flex flex-wrap align-items-center" style="background-image: url(@{/images/banner-img1.jpg});">
+               <div class="home-banner d-flex flex-wrap align-items-center" th:style="'background-image: url(' + @{/images/banner-img1.jpg} + ');'">
+</div>
                   <div class="overlay"></div>
                   <div class="container">
                      <div class="banner-content text-center">
@@ -219,7 +144,7 @@
                      </div>
                   </div>
                </div>
-               <div class="home-banner d-flex flex-wrap align-items-center" style="background-image: url(@{/images/img7.jpg});">
+               <div class="home-banner d-flex flex-wrap align-items-center" th:style="'background-image: url('+@{/images/img7.jpg}+');'">
                   <div class="overlay"></div>
                   <div class="container">
                      <div class="banner-content text-center">
@@ -282,7 +207,7 @@
                   <div class="destination-section">
                      <div class="row">
                         <div class="col-lg-4 col-md-6">
-                           <article class="destination-item" style="background-image: url(@{/images/img1.jpg});">
+                           <article class="destination-item" th:style="'background-image: url('+@{/images/img1.jpg}+');'">
                               <div class="destination-content">
                                  <div class="rating-start-wrap">
                                     <div class="rating-start">
@@ -300,7 +225,7 @@
                            </article>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                           <article class="destination-item" style="background-image: url(@{/images/img2.jpg});">
+                           <article class="destination-item" th:style="'background-image: url('+@{/images/img2.jpg}+');'">
                               <div class="destination-content">
                                  <div class="rating-start-wrap">
                                     <div class="rating-start">
@@ -318,7 +243,7 @@
                            </article>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                           <article class="destination-item" style="background-image: url(@{/images/img3.jpg});">
+                           <article class="destination-item" th:style="'background-image: url('+@{/images/img3.jpg}+');'">
                               <div class="destination-content">
                                  <div class="rating-start-wrap">
                                     <div class="rating-start">
@@ -357,7 +282,7 @@
                   </div>
                   <div class="package-section">
                      <article class="package-item">
-                        <figure class="package-image" style="background-image: url(@{/images/img4.jpg});"></figure>
+                        <figure class="package-image" th:style="'background-image: url('+@{/images/img4.jpg}+');'"></figure>
                         <div class="package-content">
                            <h3>
                               <a href="/tour-packages">
@@ -399,7 +324,7 @@
                         </div>
                      </article>
                      <article class="package-item">
-                        <figure class="package-image" style="background-image: url(@{/images/img5.jpg});"></figure>
+                        <figure class="package-image" th:style="'background-image: url('+@{/images/img5.jpg}+');'"></figure>
                         <div class="package-content">
                            <h3>
                               <a href="/tour-packages">
@@ -441,7 +366,7 @@
                         </div>
                      </article>
                      <article class="package-item">
-                        <figure class="package-image" style="background-image: url(@{/images/img6.jpg});"></figure>
+                        <figure class="package-image" th:style="'background-image: url('+@{/images/img6.jpg}+');'"></figure>
                         <div class="package-content">
                            <h3>
                               <a href="/tour-packages">
@@ -490,7 +415,7 @@
             </section>
             <!-- ***Home package html end here*** -->
             <!-- ***Home callback html start from here*** -->
-            <section class="home-callback bg-img-fullcallback" style="background-image: url(@{/images/img7.jpg});">
+            <section class="home-callback bg-img-fullcallback" th:style="'background-image: url('+@{/images/img7.jpg}+');'">
                <div class="overlay"></div>
                <div class="container">
                   <div class="row">
@@ -568,7 +493,7 @@
                   <div class="offer-section">
                      <div class="row">
                         <div class="col-md-6">
-                           <article class="offer-item" style="background-image: url(@{/images/img8.jpg});">
+                           <article class="offer-item" th:style="'background-image: url('+@{/images/img8.jpg}+');'">
                               <div class="offer-badge">
                                  UPTO <span>25%</span> off
                               </div>
@@ -605,7 +530,7 @@
                            </article>
                         </div>
                         <div class="col-md-6">
-                           <article class="offer-item" style="background-image: url(@{/images/img9.jpg});">
+                           <article class="offer-item" th:style="'background-image: url(' +@{/images/img9.jpg}+');'">
                               <div class="offer-badge">
                                  UPTO <span>17%</span> off
                               </div>
@@ -704,7 +629,7 @@
             </section>
             <!-- ***Home gallery html end here*** -->
             <!-- ***Home client html start from here*** -->
-            <section class="home-client client-section" style="background-image: url(@{/images/banner-img1.jpg});">
+            <section class="home-client client-section" th:style="'background-image:  url(' + @{/images/banner-img1.jpg} + ');'">
                <div class="container">
                   <div class="row align-items-center">
                      <div class="col-lg-6">
@@ -761,7 +686,7 @@
                      <div class="row gx-4">
                         <div class="col-lg-6">
                            <article class="post">
-                              <figure class="featured-post" style="background-image: url(@{/images/img16.jpg});"></figure>
+                              <figure class="featured-post" th:style="'background-image: url('+@{/images/img16.jpg}+');'"></figure>
                               <div class="post-content">
                                  <div class="cat-meta">
                                     <a href="blog-archive.html">TOUR</a>
@@ -784,7 +709,7 @@
                         </div>
                         <div class="col-lg-6">
                            <article class="post">
-                              <figure class="featured-post" style="background-image: url(@{/images/img17.jpg});"></figure>
+                              <figure class="featured-post" th:style="'background-image: url('+@{/images/img17.jpg}+');'"></figure>
                               <div class="post-content">
                                  <div class="cat-meta">
                                     <a href="blog-archive.html">TRAVEL</a>

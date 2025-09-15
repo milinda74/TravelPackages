@@ -4240,7 +4240,7 @@ input[type=submit]:focus {
   overflow: hidden;
 }
 .sidebar .package-list {
-  background-image: url(@{/images/banner-img1.jpg});
+  background-image: url(/images/banner-img1.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -ms-background-size: cover;
@@ -4984,7 +4984,7 @@ input[type=submit]:focus {
   border-bottom-color: rgba(167, 167, 167, 0.25);
 }
 .inner-career-detail-wrap .job-description.bg-image {
-  background-image: url(@{/images/banner-img1.jpg});
+  background-image: url(/images/banner-img1.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -ms-background-size: cover;
