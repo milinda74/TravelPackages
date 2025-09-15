@@ -25,7 +25,7 @@ public class Destination {
     private String name;
 
     @NotBlank(message = "Description is required")
-    @Size(min = 10, max = 2000, message = "Description must be between 10 and 2000 characters")
+    @Size(min = 1, max = 2000, message = "Description must be between 10 and 2000 characters")
     @Column(nullable = false, length = 2000)
     private String description;
 
@@ -221,5 +221,11 @@ public class Destination {
         this.tourPackages = tourPackages;
     }
 
+    public String getBestTimeToVisit() {
+        return bestTimeToVisit;
+    }
 
+    public void setBestTimeToVisit(String bestTimeToVisit) {
+        this.bestTimeToVisit = bestTimeToVisit;
+    }
 }

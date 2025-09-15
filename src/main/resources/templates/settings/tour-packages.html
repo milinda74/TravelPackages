@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Packages Management - Sri Lanka Travel Promise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #1a5276 0%, #3498db 100%);
+            color: white;
+        }
+        .table-actions {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Header -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" th:href="@{/}">
+            <i class="fas fa-map-marked-alt me-2"></i>Sri Lanka Travel Promise
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/destinations}">Destinations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/tour-packages}">Tours</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}">Contact</a>
+                </li>
+                <!-- Settings Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Settings
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
+                        <li><a class="dropdown-item" th:href="@{/settings/destinations}">Destinations</a></li>
+                        <li><a class="dropdown-item active" th:href="@{/settings/tour-packages}">Tour Packages</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-5 fw-bold">Tour Packages Management</h1>
+                <p class="lead">Manage tour packages for your travel business</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Form Section -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0" th:text="${tourPackage.id != null} ? 'Edit Tour Package' : 'Add New Tour Package'">
+                            Add New Tour Package
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/settings/tour-packages}" th:object="${tourPackage}" method="post">
+                            <input type="hidden" th:field="*{id}">
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Package Name *</label>
+                                <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                                <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description *</label>
+                                <textarea class="form-control" id="description" th:field="*{description}" rows="3" required></textarea>
+                                <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price ($) *</label>
+                                <input type="number" class="form-control" id="price" th:field="*{price}" step="0.01" min="0" required>
+                                <div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="duration" class="form-label">Duration (days)</label>
+                                <input type="number" class="form-control" id="duration" th:field="*{duration}" min="1">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="difficulty" class="form-label">Difficulty</label>
+                                <select class="form-control" id="difficulty" th:field="*{difficulty}">
+                                    <option value="">Select Difficulty</option>
+                                    <option value="EASY">Easy</option>
+                                    <option value="MODERATE">Moderate</option>
+                                    <option value="DIFFICULT">Difficult</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="destination" class="form-label">Destination</label>
+                                <select class="form-control" id="destination" th:field="*{destination}">
+                                    <option value="">Select Destination</option>
+                                    <option th:each="dest : ${destinations}"
+                                            th:value="${dest.id}"
+                                            th:text="${dest.name}"
+                                            th:selected="${tourPackage.destination != null and tourPackage.destination.id == dest.id}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="imageUrl" class="form-label">Image URL</label>
+                                <input type="url" class="form-control" id="imageUrl" th:field="*{imageUrl}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="maxTravelers" class="form-label">Maximum Travelers</label>
+                                <input type="number" class="form-control" id="maxTravelers" th:field="*{maxTravelers}" min="1">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="startDate" th:field="*{startDate}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isActive" th:field="*{active}">
+                                    <label class="form-check-label" for="isActive">Active</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>
+                                <span th:text="${tourPackage.id != null} ? 'Update' : 'Save'">Save</span>
+                            </button>
+
+                            <a th:href="@{/settings/tour-packages}" class="btn btn-secondary ms-2" th:if="${tourPackage.id != null}">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List Section -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">All Tour Packages</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Duration</th>
+                                    <th>Destination</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="tour : ${tourPackages}">
+                                    <td th:text="${tour.name}"></td>
+                                    <td th:text="'$' + ${#numbers.formatDecimal(tour.price, 1, 2)}"></td>
+                                    <td th:text="${tour.duration} + ' days'"></td>
+                                    <td th:text="${tour.destination != null} ? ${tour.destination.name} : 'N/A'"></td>
+                                    <td>
+                                        <span class="badge bg-success" th:if="${tour.active}">Active</span>
+                                        <span class="badge bg-danger" th:unless="${tour.active}">Inactive</span>
+                                    </td>
+                                    <td class="table-actions">
+                                        <a th:href="@{/settings/tour-packages/edit/{id}(id=${tour.id})}" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a th:href="@{/settings/tour-packages/delete/{id}(id=${tour.id})}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this tour package?')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr th:if="${tourPackages == null or tourPackages.isEmpty()}">
+                                    <td colspan="6" class="text-center text-muted">
+                                        No tour packages found. Add your first tour package above.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h5>Sri Lanka Travel Promise</h5>
+                <p>Your gateway to discovering the beautiful island of Sri Lanka.</p>
+            </div>
+            <div class="col-md-2 mb-4 mb-md-0">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/destinations" class="text-white text-decoration-none">Destinations</a></li>
+                    <li><a href="/tour-packages" class="text-white text-decoration-none">Tour Packages</a></li>
+                    <li><a href="/about" class="text-white text-decoration-none">About Us</a></li>
+                    <li><a href="/contact" class="text-white text-decoration-none">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h5>Contact Info</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-map-marker-alt me-2"></i> 123 Galle Road, Colombo</li>
+                    <li><i class="fas fa-phone me-2"></i> +94 11 234 5678</li>
+                    <li><i class="fas fa-envelope me-2"></i> info@srilankatravel.com</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Follow Us</h5>
+                <div class="social-links">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2023 Sri Lanka Travel Promise. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
