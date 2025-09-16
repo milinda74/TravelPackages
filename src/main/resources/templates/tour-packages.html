@@ -50,37 +50,37 @@
                </div>
                <!-- ***Inner Banner html end here*** -->
                <!-- ***package section html start form here*** -->
-               <div class="package-item-wrap">
-                  <div class="container">
+               <div class="package-item-wrap"><!--1-->
+                  <div th:each="tour : ${tourPackages}" class="container"><!--2-->
                      <article class="package-item">
                         <figure class="package-image" style="background-image: url(../images/img4.jpg);"></figure>
                         <div class="package-content">
                            <h3>
                               <a href="package-detail.html">
-                                 EXPERIENCE THE GREAT HOLIDAY ON BEACH
+                                 <div th:text="${tour.name}"/>
                               </a>
                            </h3>
-                           <p>Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque, cras, aspernatur.</p>
+                           <p><div th:text="${tour.description}"/></p>
                            <div class="package-meta">
                               <ul>
                                  <li>
                                     <i class="fas fa-clock"></i>
-                                    7D/6N
+                                    <div th:text="'Day(s): ' +${tour.duration}"/>
                                  </li>
                                  <li>
                                     <i class="fas fa-user-friends"></i>
-                                    pax: 10
+                                    <div th:text="'pax: ' +${tour.maxTravelers}"/>
                                  </li>
                                  <li>
                                     <i class="fas fa-map-marker-alt"></i>
-                                    Malaysia
+                                    <div th:text="${tour.destination.region}"/>
                                  </li>
                               </ul>
                            </div>
                         </div>
                         <div class="package-price">
                            <div class="review-area">
-                              <span class="review-text">(25 reviews)</span>
+                              <span class="review-text">(reviews)</span>
                               <div class="rating-start-wrap d-inline-block">
                                  <div class="rating-start">
                                     <span style="width: 80%"></span>
@@ -88,13 +88,13 @@
                               </div>
                            </div>
                            <h6 class="price-list">
-                              <span>$750</span>
-                              / per person
+                              <span><div th:text="'$'+${tour.price}"/></span>
+
                            </h6>
                            <a href="booking.html" class="outline-btn outline-btn-white">Book now</a>
                         </div>
                      </article>
-                     <article class="package-item">
+                     <!-- article class="package-item">
                         <figure class="package-image" style="background-image: url(../images/img5.jpg);"></figure>
                         <div class="package-content">
                            <h3>
@@ -261,9 +261,9 @@
                            </h6>
                            <a href="booking.html" class="outline-btn outline-btn-white">Book now</a>
                         </div>
-                     </article>
-                  </div>
-               </div>
+                     </article -->
+                  </div><!--2-->
+               </div><!--1-->
                <!-- ***package section html start form here*** -->
                <!-- ***client section html start form here*** -->
                <div class="client-section" style="background-image: url(../images/banner-img1.jpg);">
