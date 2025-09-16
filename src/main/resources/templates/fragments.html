@@ -79,6 +79,18 @@
                               <li th:class="${activemenu == 'contact'} ? 'menu-active' : ''">
                                  <a href="/contact">contact us</a>
                               </li>
+
+                              <!-- Settings Dropdown start-->
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Settings
+                                 </a>
+                                 <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
+                                    <li><a class="dropdown-item" th:href="@{/settings/destinations}">Destinations</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/settings/tour-packages}">Tour Packages</a></li>
+                                 </ul>
+                              </li>
+                              <!-- Settings Dropdown end-->
                            </ul>
                         </nav>
                      </div>
