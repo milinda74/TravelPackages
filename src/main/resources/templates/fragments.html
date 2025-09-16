@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <!-- Header Fragment -->
-<header th:fragment="header" id="masthead" class="site-header">
+<header th:fragment="header(activemenu)" id="masthead" class="site-header">
             <!-- header html start -->
             <div class="top-header">
                <div class="container">
@@ -63,20 +63,20 @@
                      <div class="navigation-container d-none d-lg-block">
                         <nav id="navigation" class="navigation">
                            <ul>
-                              <li class="menu-active">
+                              <li th:class="${activemenu == 'home'} ? 'menu-active' : ''">
                                  <a href="/">Home</a>
                               </li>
-                              <li>
+                              <li th:class="${activemenu == 'about'} ? 'menu-active' : ''">
                                  <a href="/about">about us</a>
                               </li>
-                              <li>
+                              <li th:class="${activemenu == 'destinations'} ? 'menu-active' : ''">
                                  <a href="/destinations">destination</a>
                               </li>
-                              <li>
+                              <li th:class="${activemenu == 'packages'} ? 'menu-active' : ''">
                                  <a href="/tour-packages">Tours</a>
                               </li>
                         
-                              <li>
+                              <li th:class="${activemenu == 'contact'} ? 'menu-active' : ''">
                                  <a href="/contact">contact us</a>
                               </li>
                            </ul>
