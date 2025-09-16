@@ -50,10 +50,10 @@
                </div>
                <!-- ***Inner Banner html end here*** -->
                <!-- ***destination section html start form here*** -->
-               <div class="destination-item-wrap">
-                  <div class="container">
-                     <div class="row gx-5">
-                        <div class="col-lg-4 col-md-6">
+               <div class="destination-item-wrap"><!-- 1 -->
+                  <div class="container"><!-- 2 -->
+                     <div class="row gx-5" th:if="${destinations != null and destinations.size() > 0}"><!-- 3 -->
+                        <div class="col-lg-4 col-md-6" th:each="destination : ${destinations}">
                            <article class="destination-item" style="background-image: url(../images/img1.jpg);">
                               <div class="destination-content">
                                  <div class="rating-start-wrap">
@@ -62,16 +62,17 @@
                                     </div>
                                  </div>
                                  <span class="cat-link">
-                                    <a href="destination.html">ITALY</a>
+                                    <a href="destination.html"><div th:text="${destination.name}"/></a>
                                  </span>
                                  <h3>
-                                    <a href="package-detail.html">SAN MIGUEL</a>
+                                    <a href="package-detail.html"><div th:text="${destination.region}"/></a>
                                  </h3>
-                                 <p>Fusce hic augue velit wisi ips quibusdam pariatur, iusto.</p>
+                                 <p><div th:text="${destination.description}"/></p>
                               </div>
                            </article>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+
+                        <!--div class="col-lg-4 col-md-6">
                            <article class="destination-item" style="background-image: url(../images/img2.jpg);">
                               <div class="destination-content">
                                  <div class="rating-start-wrap">
@@ -160,10 +161,12 @@
                                  <p>Fusce hic augue velit wisi ips quibusdam pariatur, iusto.</p>
                               </div>
                            </article>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                        </div -->
+
+                     </div><!-- 3 -->
+                  </div><!-- 2 -->
+               </div><!-- 1 -->
+
                <!-- ***destination section html start form here*** -->
                <!-- ***counter section html start form here*** -->
                <div class="inner-counter">
